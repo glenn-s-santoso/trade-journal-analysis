@@ -1,0 +1,28 @@
+# Environment variables - contains sensitive API keys
+.env
+.venv
+venv
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+user_input.py
+
+# Output data
+output/
+closed_pnl_data.csv
+pnl_analysis.png
+report_plots
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
