@@ -9,7 +9,7 @@ from src.constants.env import OPENROUTER_API_KEY
 from src.util import get_closed_pnl, get_llm_analysis, generate_html_report
 
 
-def generate_report_with_llm():
+def main():
     """Generate a comprehensive trading report with LLM analysis"""
     print("Fetching closed PnL data from Bybit...")
     pnl_data = get_closed_pnl()
@@ -35,6 +35,7 @@ def generate_report_with_llm():
         user_data = {}
         has_user_input = False
     
+    date = datetime.now().strftime('%Y%m%d_%H%M%S')
     # Check if OpenRouter API key is available
     if not OPENROUTER_API_KEY:
         print("Warning: OpenRouter API key not found. LLM analysis will be skipped.")
@@ -43,13 +44,13 @@ def generate_report_with_llm():
         
         # Generate report without LLM analysis
         if has_user_input:
-            generate_html_report(pnl_data, user_data=user_data)
+            generate_html_report(pnl_data, date=date, user_data=user_data)
         else:
-            generate_html_report(pnl_data)
+            generate_html_report(pnl_data, date=date)
         return
     
     print("Getting LLM analysis of your trading performance...")
-    llm_analysis = get_llm_analysis(pnl_data, user_data if has_user_input else None)
+    llm_analysis = get_llm_analysis(pnl_data, date, user_data if has_user_input else None)
     
     if "error" in llm_analysis:
         print(f"Error getting LLM analysis: {llm_analysis['error']}")
@@ -57,9 +58,9 @@ def generate_report_with_llm():
         
         # Generate report without LLM analysis
         if has_user_input:
-            generate_html_report(pnl_data, user_data=user_data)
+            generate_html_report(pnl_data, date=date, user_data=user_data)
         else:
-            generate_html_report(pnl_data)
+            generate_html_report(pnl_data, date=date)
         return
     
     print("LLM analysis complete. Generating enhanced report...")
@@ -72,15 +73,15 @@ def generate_report_with_llm():
     
     # Create output directory if it doesn't exist
     output_dir = "output"
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-        print(f"Created output directory: {output_dir}")
+    if not os.path.exists(f"{output_dir}/{date}"):
+        os.makedirs(f"{output_dir}/{date}")
+        print(f"Created output directory: {output_dir}/{date}")
     
     # Generate report with LLM analysis
-    output_file = f"{output_dir}/trading_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
-    generate_html_report(pnl_data, output_file=output_file, user_data=user_data)
+    output_file = f"{output_dir}/{date}/trading_report.html"
+    generate_html_report(pnl_data, output_file=output_file, date=date, user_data=user_data)
     
-    print(f"Enhanced report generated: {output_file}")
+    print(f"HTML report generated: {output_file}")
 
 if __name__ == "__main__":
-    generate_report_with_llm()
+    main()

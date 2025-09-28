@@ -6,7 +6,7 @@ from typing import Optional
 from src.service.trading_analyzer import TradingAnalyzer
 import json
 
-def get_llm_analysis(pnl_data: list[dict[str, any]], user_input: Optional[dict[str, any]] = None):
+def get_llm_analysis(pnl_data: list[dict[str, any]], date: str, user_input: Optional[dict[str, any]] = None):
     """
     Get LLM analysis of trading performance
     
@@ -34,12 +34,12 @@ def get_llm_analysis(pnl_data: list[dict[str, any]], user_input: Optional[dict[s
             print(json.dumps(analysis, indent=2))
             
         os.makedirs('output', exist_ok=True)
-        os.makedirs('output/llm_analysis', exist_ok=True)
+        os.makedirs(f'output/{date}/llm_analysis', exist_ok=True)
         
         # Save to file
-        with open("output/llm_analysis/llm_analysis.json", "w") as f:
+        with open(f"output/{date}/llm_analysis/llm_analysis.json", "w") as f:
             json.dump(analysis, f, indent=2)
-        print("\nAnalysis saved to output/llm_analysis/llm_analysis.json")
+        print(f"\nAnalysis saved to output/{date}/llm_analysis/llm_analysis.json")
     else:
         print("No PnL data available for analysis.")
     
