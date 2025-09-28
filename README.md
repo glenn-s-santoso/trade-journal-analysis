@@ -17,10 +17,10 @@ A tool to fetch and analyze your closed PnL from Bybit for the past week. This h
    ```
    # Using pip directly
    pip install -e .
-   
+
    # Or using the Makefile
    make install
-   
+
    # For development with testing tools
    make dev-setup
    ```

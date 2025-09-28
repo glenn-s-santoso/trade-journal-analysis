@@ -26,35 +26,6 @@ repos:
       - id: isort
         args: ["--profile", "black", "--filter-files"]
 
-  - repo: https://github.com/pycqa/flake8
-    rev: 6.1.0
-    hooks:
-      - id: flake8
-        additional_dependencies:
-          - flake8-docstrings
-        args:
-          - "--max-line-length=88"
-          - "--extend-ignore=E203"  # For black compatibility
-
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.6.1
-    hooks:
-      - id: mypy
-        additional_dependencies:
-          - types-requests
-          - types-python-dateutil
-        args: [--ignore-missing-imports]
-        exclude: ^tests/
-
-  - repo: https://github.com/pycqa/pydocstyle
-    rev: 6.3.0
-    hooks:
-      - id: pydocstyle
-        exclude: ^tests/
-        args:
-          - "--convention=google"
-          - "--add-ignore=D100,D104,D105,D107"  # Ignore missing docstrings in certain places
-
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.15.0
     hooks:

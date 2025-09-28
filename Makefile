@@ -31,4 +31,3 @@ pre-commit:
 pre-commit-run:
 	@echo "Running pre-commit on all files..."
 	@pre-commit run --all-files
-

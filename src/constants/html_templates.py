@@ -1,6 +1,5 @@
-"""
-HTML template constants for report generation
-"""
+"""HTML template constants for report generation."""
+
 
 REPORT_HTML_TEMPLATE = """
 <!DOCTYPE html>
@@ -106,7 +105,7 @@ REPORT_HTML_TEMPLATE = """
         <h1>Bybit Trading Performance Report</h1>
         <p>Period: {period_start} to {period_end}</p>
         <p>Report generated on: {generation_time}</p>
-        
+
         <div class="metric-box">
             <h2>Overall Performance Summary</h2>
             <div class="metrics">
@@ -128,17 +127,17 @@ REPORT_HTML_TEMPLATE = """
                 </div>
             </div>
         </div>
-        
+
         <div class="chart-container">
             <h2>Cumulative PnL Over Time</h2>
             <img src="report_plots/cumulative_pnl.png" alt="Cumulative PnL Chart">
         </div>
-        
+
         <div class="chart-container">
             <h2>Daily PnL</h2>
             <img src="report_plots/daily_pnl.png" alt="Daily PnL Chart">
         </div>
-        
+
         <h2>Symbol Performance</h2>
         <table>
             <tr>
@@ -150,29 +149,29 @@ REPORT_HTML_TEMPLATE = """
             </tr>
             {symbol_stats_rows}
         </table>
-        
+
         <div class="chart-container">
             <h2>PnL Distribution</h2>
             <img src="report_plots/pnl_distribution.png" alt="PnL Distribution">
         </div>
-        
+
         <div class="chart-container">
             <h2>Trade Duration Distribution</h2>
             <img src="report_plots/duration_distribution.png" alt="Duration Distribution">
         </div>
-        
+
         <div class="chart-container">
             <h2>Hourly Performance Heatmap</h2>
             <img src="report_plots/hourly_heatmap.png" alt="Hourly Heatmap">
         </div>
-        
+
         <h2>Recommendations</h2>
         <div class="metric-box">
             <ul>
                 {recommendation_items}
             </ul>
         </div>
-        
+
         {user_sections}
     </div>
 </body>
