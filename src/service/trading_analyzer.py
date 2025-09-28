@@ -4,7 +4,7 @@ from typing import Dict, List, Optional, Any
 
 import requests
 from src.constants.prompt import ANALYZER_PROMPT
-from src.constants.env import OPENROUTER_API_KEY, OPENROUTER_API_BASE, OPENROUTER_MODEL
+from src.constants.env import OPENROUTER_API_KEY, OPENROUTER_API_BASE, OPENROUTER_MODEL, STANDARD_RISK
 
 class TradingAnalyzer:
     """Trading performance analyzer using LLM"""
@@ -156,8 +156,8 @@ class TradingAnalyzer:
         avg_win = df.loc[df['closedPnl'] > 0, 'closedPnl'].mean() if win_count > 0 else 0
         avg_loss = df.loc[df['closedPnl'] < 0, 'closedPnl'].mean() if loss_count > 0 else 0
         
-        # Risk multiple (R) - assuming standard risk from user input or default to 9
-        standard_risk = 9
+        standard_risk = STANDARD_RISK
+        
         if user_input and 'RISK_MANAGEMENT' in user_input:
             standard_risk = user_input['RISK_MANAGEMENT'].get('standard_risk_per_trade', 9)
             

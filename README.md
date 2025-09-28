@@ -15,7 +15,14 @@ A tool to fetch and analyze your closed PnL from Bybit for the past week. This h
 
 3. Install the required dependencies:
    ```
-   pip install -r requirements.txt
+   # Using pip directly
+   pip install -e .
+   
+   # Or using the Makefile
+   make install
+   
+   # For development with testing tools
+   make dev-setup
    ```
 
 4. Set up your API credentials:
@@ -29,7 +36,7 @@ A tool to fetch and analyze your closed PnL from Bybit for the past week. This h
 
 For quick command-line analysis:
 ```
-python get_closed_pnl.py
+python -m src.util.get_closed_pnl
 ```
 
 This will:
@@ -43,7 +50,13 @@ This will:
 
 For a comprehensive HTML report with insights and recommendations:
 ```
-python generate_report.py
+python -m src.util.generate_report
+
+# Or simply use the main module
+python -m src.main
+
+# Or use the Makefile
+make run
 ```
 
 This will:
@@ -56,7 +69,10 @@ This will:
 
 For an advanced report with AI analysis of your trading patterns:
 ```
-python generate_llm_report.py
+python -m src.main  # The main module includes LLM analysis by default
+
+# With command-line options
+python -m src.main --tempdir false --upload true
 ```
 
 This will:
@@ -78,7 +94,8 @@ This will:
 
 To evaluate how well your trades adhere to your trading plan:
 ```
-python trading_plan_review.py
+# This feature is integrated into the main module when you provide trading plan input
+python -m src.main --with-plan true
 ```
 
 This tool:
@@ -153,3 +170,72 @@ To resolve this issue:
 2. Run the script again
 
 **Note:** Disabling SSL verification reduces security and should only be used for testing purposes. In a production environment, consider using a properly configured SSL certificate.
+
+## Development
+
+### Package Structure
+
+This project uses modern Python packaging with `pyproject.toml` instead of the older `requirements.txt` approach. Benefits include:
+
+- Standardized project metadata following PEP 621
+- Cleaner dependency management
+- Support for optional development dependencies
+- Better integration with modern tools
+
+### Commands
+
+```bash
+# Install in development mode
+make install
+
+# Install with development tools (pytest, black, etc.)
+make dev-setup
+
+# Run the application
+make run
+
+# Run with uv package manager
+make uv-run
+
+# Clean up build artifacts
+make clean
+
+# Set up pre-commit hooks
+make pre-commit
+
+# Run pre-commit on all files
+make pre-commit-run
+```
+
+### Code Quality Tools
+
+This project uses several code quality tools enforced via pre-commit:
+
+- **Black**: Code formatting
+- **isort**: Import sorting
+- **Flake8**: Style guide enforcement
+- **MyPy**: Static type checking
+- **PyDocStyle**: Docstring style checking
+- **PyUpgrade**: Automatic Python syntax upgrading
+
+After installing the development dependencies, set up pre-commit:
+
+```bash
+# Install pre-commit hooks (runs automatically before each commit)
+make pre-commit
+
+# Manually run on all files
+make pre-commit-run
+```
+
+### Using with uv
+
+If you're using the [uv](https://github.com/astral-sh/uv) package manager for faster dependency resolution:
+
+```bash
+# Install dependencies
+uv pip install -e .
+
+# Run the application
+uv run -m src.main
+```

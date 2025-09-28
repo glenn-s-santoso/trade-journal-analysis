@@ -63,10 +63,15 @@ def generate_html_report(pnl_data: List[Dict[str, Any]], output_file: str = "tra
     df['profit_flag'] = df['closedPnl'] > 0
     df['cumulative_pnl'] = df['closedPnl'].cumsum()
     
-    # Create plots in a temp directory
-    global report_plots_folder 
-    report_plots_folder = f"output/{date}/report_plots"
+    global report_plots_folder
     
+    if output_file and output_file != "trading_report.html":
+        output_dir = os.path.dirname(output_file)
+        report_plots_folder = os.path.join(output_dir, "report_plots")
+    else:
+        report_plots_folder = f"output/{date}/report_plots"
+    
+    print(f"Saving plots to: {report_plots_folder}")
     os.makedirs(report_plots_folder, exist_ok=True)
     
     report_plots_folder += "/{filename}.png"

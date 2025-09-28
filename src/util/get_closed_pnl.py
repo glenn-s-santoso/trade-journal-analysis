@@ -17,7 +17,12 @@ start_timestamp = int(start_time.timestamp() * 1000)
 end_timestamp = int(end_time.timestamp() * 1000)
 
 def get_closed_pnl() -> list[dict[str, any]]:
-    """Fetch closed PnL data from Bybit for the past week."""
+    """
+    Fetch closed PnL data from Bybit for the past week.
+    
+    Returns:
+        list[dict[str, any]]: List of closed PnL data.
+    """
     try:
         session = BybitClient(
             api_key=BYBIT_API_KEY,
