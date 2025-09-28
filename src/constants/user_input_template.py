@@ -1,3 +1,5 @@
+"""User input template."""
+
 # Trading Strategy and Approach
 THIS_WEEK_STRATEGY = []
 
@@ -12,5 +14,3 @@ IMPROVEMENT_GOALS = []
 
 # Personal Reflection
 PERSONAL_REFLECTION = """"""
-
-

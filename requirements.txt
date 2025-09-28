@@ -1,7 +1,0 @@
-pybit>=2.4.0
-pandas>=1.5.0
-matplotlib>=3.5.0
-python-dotenv>=1.0.0
-questionary>=1.10.0
-seaborn>=0.12.0
-pydantic>=2.5.3

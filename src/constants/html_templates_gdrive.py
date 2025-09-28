@@ -1,5 +1,4 @@
-"""HTML template constants for report generation."""
-
+"""HTML template constants for report generation with Google Drive support."""
 
 REPORT_HTML_TEMPLATE = """
 <!DOCTYPE html>
@@ -130,12 +129,12 @@ REPORT_HTML_TEMPLATE = """
 
         <div class="chart-container">
             <h2>Cumulative PnL Over Time</h2>
-            <img src="report_plots/cumulative_pnl.png" alt="Cumulative PnL Chart">
+            <img src="{cumulative_pnl_url}" alt="Cumulative PnL Chart">
         </div>
 
         <div class="chart-container">
             <h2>Daily PnL</h2>
-            <img src="report_plots/daily_pnl.png" alt="Daily PnL Chart">
+            <img src="{daily_pnl_url}" alt="Daily PnL Chart">
         </div>
 
         <h2>Symbol Performance</h2>
@@ -152,17 +151,17 @@ REPORT_HTML_TEMPLATE = """
 
         <div class="chart-container">
             <h2>PnL Distribution</h2>
-            <img src="report_plots/pnl_distribution.png" alt="PnL Distribution">
+            <img src="{pnl_distribution_url}" alt="PnL Distribution">
         </div>
 
         <div class="chart-container">
             <h2>Trade Duration Distribution</h2>
-            <img src="report_plots/duration_distribution.png" alt="Duration Distribution">
+            <img src="{duration_distribution_url}" alt="Duration Distribution">
         </div>
 
         <div class="chart-container">
             <h2>Hourly Performance Heatmap</h2>
-            <img src="report_plots/hourly_heatmap.png" alt="Hourly Heatmap">
+            <img src="{hourly_heatmap_url}" alt="Hourly Heatmap">
         </div>
 
         <h2>Recommendations</h2>

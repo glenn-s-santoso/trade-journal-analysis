@@ -1,3 +1,5 @@
+"""LLM analyzer prompt."""
+
 ANALYZER_PROMPT = """
 You are a professional trading coach and analyst. I'll provide you with my trading performance data
 and personal notes. Please analyze this information and provide insights in the following categories:
